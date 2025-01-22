@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_e6a88a0e05875cde4aed373bf986365b {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+    <div style="position: fixed; 
+                bottom: 50px; left: 50px; width: 200px; height: auto; 
+                background-color: #212122; color: #fff;  
+                z-index: 9999; font-size: 14px; padding: 15px 10px;">
+        <b style="margin-bottom: 10px; display: block;">Distance to Earth's Core</b>
+        <div style="margin-bottom: 8px;">
+            <i style="height: 8px; vertical-align: -10px; background-color: orange; padding: 5px 10px; color: #fff; display: inline-block;">&nbsp;&nbsp;</i> Closest
+        </div>
+        <div style="margin-bottom: 8px;">
+            <i style="height: 8px; vertical-align: -10px;background-color: cadetblue; padding: 5px 10px; display: inline-block;">&nbsp;&nbsp;</i> Medium
+        </div>
+        <div style="margin-bottom: 8px;">
+            <i style="height: 8px; vertical-align: -10px;background-color: lightblue; padding: 5px 10px; display: inline-block;">&nbsp;&nbsp;</i> Medium
+        </div>
+        <div style="margin-bottom: 0;">
+            <i style="height: 8px; vertical-align: -10px;background-color: lightgray; padding: 5px 10px; color: #fff; display: inline-block;">&nbsp;&nbsp;</i> Farthest
+        </div>
+    </div>
+    
+            <div class="folium-map" id="map_e6a88a0e05875cde4aed373bf986365b" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_e6a88a0e05875cde4aed373bf986365b = L.map(
+                "map_e6a88a0e05875cde4aed373bf986365b",
+                {
+                    center: [20.0, 0.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 2,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_a7b7979c258502f6388457c36423c39f = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_a7b7979c258502f6388457c36423c39f.addTo(map_e6a88a0e05875cde4aed373bf986365b);
+        
+    
+            var marker_c083293ddb20b50792848a1cb05bd67a = L.marker(
+                [51.5074456, -0.1277653],
+                {
+}
+            ).addTo(map_e6a88a0e05875cde4aed373bf986365b);
+        
+    
+            var icon_886ccecd7bc883f68d897b26c9f8969c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_c083293ddb20b50792848a1cb05bd67a.setIcon(icon_886ccecd7bc883f68d897b26c9f8969c);
+        
+    
+        var popup_b61abf5c4a6e15a3483e00ed32932ee7 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6e87d5c8fd37f94280b658bcd30f6d0c = $(`<div id="html_6e87d5c8fd37f94280b658bcd30f6d0c" style="width: 100.0%; height: 100.0%;">London: 6365.10 km to Earth's core</div>`)[0];
+                popup_b61abf5c4a6e15a3483e00ed32932ee7.setContent(html_6e87d5c8fd37f94280b658bcd30f6d0c);
+            
+        
+
+        marker_c083293ddb20b50792848a1cb05bd67a.bindPopup(popup_b61abf5c4a6e15a3483e00ed32932ee7)
+        ;
+
+        
+    
+    
+            var marker_bbe4645ac9405bab10eea223ce69f08a = L.marker(
+                [49.2608724, -123.113952],
+                {
+}
+            ).addTo(map_e6a88a0e05875cde4aed373bf986365b);
+        
+    
+            var icon_15bb5d40176ac9fd9c6b0dcfe4ebb9ea = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_bbe4645ac9405bab10eea223ce69f08a.setIcon(icon_15bb5d40176ac9fd9c6b0dcfe4ebb9ea);
+        
+    
+        var popup_61ca46fc0668d3dcdb7a42275ee6cbe6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_39e877d9cea7918ad96fe891bec7181a = $(`<div id="html_39e877d9cea7918ad96fe891bec7181a" style="width: 100.0%; height: 100.0%;">Vancouver: 6365.91 km to Earth's core</div>`)[0];
+                popup_61ca46fc0668d3dcdb7a42275ee6cbe6.setContent(html_39e877d9cea7918ad96fe891bec7181a);
+            
+        
+
+        marker_bbe4645ac9405bab10eea223ce69f08a.bindPopup(popup_61ca46fc0668d3dcdb7a42275ee6cbe6)
+        ;
+
+        
+    
+    
+            var marker_1b44ba90fbde5eeba9c8822c595e5475 = L.marker(
+                [48.8534951, 2.3483915],
+                {
+}
+            ).addTo(map_e6a88a0e05875cde4aed373bf986365b);
+        
+    
+            var icon_9370e29941a2a0e98e4284510be8814f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_1b44ba90fbde5eeba9c8822c595e5475.setIcon(icon_9370e29941a2a0e98e4284510be8814f);
+        
+    
+        var popup_d6001ce594675eb8ab0b523a9284c643 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9d9630bd94fed5eef084a62ac041cb95 = $(`<div id="html_9d9630bd94fed5eef084a62ac041cb95" style="width: 100.0%; height: 100.0%;">Paris: 6366.09 km to Earth's core</div>`)[0];
+                popup_d6001ce594675eb8ab0b523a9284c643.setContent(html_9d9630bd94fed5eef084a62ac041cb95);
+            
+        
+
+        marker_1b44ba90fbde5eeba9c8822c595e5475.bindPopup(popup_d6001ce594675eb8ab0b523a9284c643)
+        ;
+
+        
+    
+    
+            var marker_42eac74b2ed54f7cf3ea8d16f6dac43e = L.marker(
+                [47.6038321, -122.330062],
+                {
+}
+            ).addTo(map_e6a88a0e05875cde4aed373bf986365b);
+        
+    
+            var icon_a599543b001fe5d0bfb133eb22c154ba = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "cadetblue",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_42eac74b2ed54f7cf3ea8d16f6dac43e.setIcon(icon_a599543b001fe5d0bfb133eb22c154ba);
+        
+    
+        var popup_97d1da1b8e60654039419bd08fdfbbd5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9456519712ec15335e996890231a6c8a = $(`<div id="html_9456519712ec15335e996890231a6c8a" style="width: 100.0%; height: 100.0%;">Seattle: 6367.13 km to Earth's core</div>`)[0];
+                popup_97d1da1b8e60654039419bd08fdfbbd5.setContent(html_9456519712ec15335e996890231a6c8a);
+            
+        
+
+        marker_42eac74b2ed54f7cf3ea8d16f6dac43e.bindPopup(popup_97d1da1b8e60654039419bd08fdfbbd5)
+        ;
+
+        
+    
+    
+            var marker_3acead43d6670be0bccb077ed3465108 = L.marker(
+                [47.0505452, 8.3054682],
+                {
+}
+            ).addTo(map_e6a88a0e05875cde4aed373bf986365b);
+        
+    
+            var icon_78eed6706c65d9a6798c0d539f8329b4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "cadetblue",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_3acead43d6670be0bccb077ed3465108.setIcon(icon_78eed6706c65d9a6798c0d539f8329b4);
+        
+    
+        var popup_1537a46f405fe92235421a2af614aaaf = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d35a0a8e9ee76867f9866ff80a1797c4 = $(`<div id="html_d35a0a8e9ee76867f9866ff80a1797c4" style="width: 100.0%; height: 100.0%;">Lucerne: 6367.16 km to Earth's core</div>`)[0];
+                popup_1537a46f405fe92235421a2af614aaaf.setContent(html_d35a0a8e9ee76867f9866ff80a1797c4);
+            
+        
+
+        marker_3acead43d6670be0bccb077ed3465108.bindPopup(popup_1537a46f405fe92235421a2af614aaaf)
+        ;
+
+        
+    
+    
+            var marker_70e0b6d81df978eb48fc8b99c5b12e99 = L.marker(
+                [44.3876378, -68.2043361],
+                {
+}
+            ).addTo(map_e6a88a0e05875cde4aed373bf986365b);
+        
+    
+            var icon_554772d478ee8046fb0b7f05efae21a4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "cadetblue",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_70e0b6d81df978eb48fc8b99c5b12e99.setIcon(icon_554772d478ee8046fb0b7f05efae21a4);
+        
+    
+        var popup_97c41d1be66df7818ba7ee65d86b45e7 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1849930c7feca2886632726d4ad59632 = $(`<div id="html_1849930c7feca2886632726d4ad59632" style="width: 100.0%; height: 100.0%;">Bar Harbor: 6367.74 km to Earth's core</div>`)[0];
+                popup_97c41d1be66df7818ba7ee65d86b45e7.setContent(html_1849930c7feca2886632726d4ad59632);
+            
+        
+
+        marker_70e0b6d81df978eb48fc8b99c5b12e99.bindPopup(popup_97c41d1be66df7818ba7ee65d86b45e7)
+        ;
+
+        
+    
+    
+            var marker_cdc84ccdba3c1c6e625cc436159042f7 = L.marker(
+                [44.4643768, -72.6856197],
+                {
+}
+            ).addTo(map_e6a88a0e05875cde4aed373bf986365b);
+        
+    
+            var icon_b97262f11f711e12f4454fca0c91f4a6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "cadetblue",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_cdc84ccdba3c1c6e625cc436159042f7.setIcon(icon_b97262f11f711e12f4454fca0c91f4a6);
+        
+    
+        var popup_7717a2edd569679026618bd18f5853c8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5ccb3b1c2c8bb56df8ec7da36b42124d = $(`<div id="html_5ccb3b1c2c8bb56df8ec7da36b42124d" style="width: 100.0%; height: 100.0%;">Stowe: 6367.96 km to Earth's core</div>`)[0];
+                popup_7717a2edd569679026618bd18f5853c8.setContent(html_5ccb3b1c2c8bb56df8ec7da36b42124d);
+            
+        
+
+        marker_cdc84ccdba3c1c6e625cc436159042f7.bindPopup(popup_7717a2edd569679026618bd18f5853c8)
+        ;
+
+        
+    
+    
+            var marker_3077d2e3108260e6ebfc1fac2854db4f = L.marker(
+                [43.5122922, -6.0973052],
+                {
+}
+            ).addTo(map_e6a88a0e05875cde4aed373bf986365b);
+        
+    
+            var icon_4734833a6e74a2c41e5af75c0e949758 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "cadetblue",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_3077d2e3108260e6ebfc1fac2854db4f.setIcon(icon_4734833a6e74a2c41e5af75c0e949758);
+        
+    
+        var popup_5ee93ef1b7c61c4cb711528eb0cd8d1a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f7448dec9f2a7a553076062ce8fc9b2f = $(`<div id="html_f7448dec9f2a7a553076062ce8fc9b2f" style="width: 100.0%; height: 100.0%;">Los Cabos: 6368.06 km to Earth's core</div>`)[0];
+                popup_5ee93ef1b7c61c4cb711528eb0cd8d1a.setContent(html_f7448dec9f2a7a553076062ce8fc9b2f);
+            
+        
+
+        marker_3077d2e3108260e6ebfc1fac2854db4f.bindPopup(popup_5ee93ef1b7c61c4cb711528eb0cd8d1a)
+        ;
+
+        
+    
+    
+            var marker_1aeab5f75a1ebcff6fe8d9bdba33dd56 = L.marker(
+                [40.7127281, -74.0060152],
+                {
+}
+            ).addTo(map_e6a88a0e05875cde4aed373bf986365b);
+        
+    
+            var icon_c2890a472a1d9e29ba67ff05cb323661 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "lightblue",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_1aeab5f75a1ebcff6fe8d9bdba33dd56.setIcon(icon_c2890a472a1d9e29ba67ff05cb323661);
+        
+    
+        var popup_487f4dc6116130780cb533ac52ed1799 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_038e0ea1b59114f969cb7ec690aa9ca1 = $(`<div id="html_038e0ea1b59114f969cb7ec690aa9ca1" style="width: 100.0%; height: 100.0%;">New York: 6369.09 km to Earth's core</div>`)[0];
+                popup_487f4dc6116130780cb533ac52ed1799.setContent(html_038e0ea1b59114f969cb7ec690aa9ca1);
+            
+        
+
+        marker_1aeab5f75a1ebcff6fe8d9bdba33dd56.bindPopup(popup_487f4dc6116130780cb533ac52ed1799)
+        ;
+
+        
+    
+    
+            var marker_36d29a16f4410aaeea3001f300392231 = L.marker(
+                [40.9038871, -3.8802853],
+                {
+}
+            ).addTo(map_e6a88a0e05875cde4aed373bf986365b);
+        
+    
+            var icon_e2b4b1b9a253e9e6676b36c8aa7d8f9c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "lightgray",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_36d29a16f4410aaeea3001f300392231.setIcon(icon_e2b4b1b9a253e9e6676b36c8aa7d8f9c);
+        
+    
+        var popup_7170cbdbdcc8fba4eafd6baefe070c99 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ac9ead3ed782f650eb3dba82427e5d9d = $(`<div id="html_ac9ead3ed782f650eb3dba82427e5d9d" style="width: 100.0%; height: 100.0%;">Rascafria: 6370.18 km to Earth's core</div>`)[0];
+                popup_7170cbdbdcc8fba4eafd6baefe070c99.setContent(html_ac9ead3ed782f650eb3dba82427e5d9d);
+            
+        
+
+        marker_36d29a16f4410aaeea3001f300392231.bindPopup(popup_7170cbdbdcc8fba4eafd6baefe070c99)
+        ;
+
+        
+    
+    
+            var marker_cb0938f6f51defc1dbc65a35ae249cf7 = L.marker(
+                [40.9038871, -3.8802853],
+                {
+}
+            ).addTo(map_e6a88a0e05875cde4aed373bf986365b);
+        
+    
+            var icon_a005da9f69d23d377091c7716a6f4771 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "lightgray",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_cb0938f6f51defc1dbc65a35ae249cf7.setIcon(icon_a005da9f69d23d377091c7716a6f4771);
+        
+    
+        var popup_65d2a48706a6d6629a65a9507923fa31 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_67e9823bdacaad3d476bdcd16b0105e4 = $(`<div id="html_67e9823bdacaad3d476bdcd16b0105e4" style="width: 100.0%; height: 100.0%;">Rascafria: 6370.18 km to Earth's core</div>`)[0];
+                popup_65d2a48706a6d6629a65a9507923fa31.setContent(html_67e9823bdacaad3d476bdcd16b0105e4);
+            
+        
+
+        marker_cb0938f6f51defc1dbc65a35ae249cf7.bindPopup(popup_65d2a48706a6d6629a65a9507923fa31)
+        ;
+
+        
+    
+    
+            var marker_f08360bc3243ebf03bdd4b12d952126f = L.marker(
+                [36.5297438, -6.2928976],
+                {
+}
+            ).addTo(map_e6a88a0e05875cde4aed373bf986365b);
+        
+    
+            var icon_04d47f343bc1769d37c601651ed4b0d9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "lightgray",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_f08360bc3243ebf03bdd4b12d952126f.setIcon(icon_04d47f343bc1769d37c601651ed4b0d9);
+        
+    
+        var popup_679e89bc70947315dc0ed8b899e86eca = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c1c4f420428ae728acb64db8ecc27169 = $(`<div id="html_c1c4f420428ae728acb64db8ecc27169" style="width: 100.0%; height: 100.0%;">Cádiz: 6370.61 km to Earth's core</div>`)[0];
+                popup_679e89bc70947315dc0ed8b899e86eca.setContent(html_c1c4f420428ae728acb64db8ecc27169);
+            
+        
+
+        marker_f08360bc3243ebf03bdd4b12d952126f.bindPopup(popup_679e89bc70947315dc0ed8b899e86eca)
+        ;
+
+        
+    
+    
+            var marker_969c0e8bf3dca34a3cf3f23859fd836d = L.marker(
+                [36.1672559, -115.148516],
+                {
+}
+            ).addTo(map_e6a88a0e05875cde4aed373bf986365b);
+        
+    
+            var icon_0c8e67314b5a5236f5123e3f86230e61 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "lightgray",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_969c0e8bf3dca34a3cf3f23859fd836d.setIcon(icon_0c8e67314b5a5236f5123e3f86230e61);
+        
+    
+        var popup_b66eedaee3a8358b85654e3348f178d0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_fe3fd23ce4adb3d96dfaf7c472a72743 = $(`<div id="html_fe3fd23ce4adb3d96dfaf7c472a72743" style="width: 100.0%; height: 100.0%;">Las Vegas: 6371.34 km to Earth's core</div>`)[0];
+                popup_b66eedaee3a8358b85654e3348f178d0.setContent(html_fe3fd23ce4adb3d96dfaf7c472a72743);
+            
+        
+
+        marker_969c0e8bf3dca34a3cf3f23859fd836d.bindPopup(popup_b66eedaee3a8358b85654e3348f178d0)
+        ;
+
+        
+    
+    
+            var marker_a3420c11e1cbf2c858ec3a950f730aa7 = L.marker(
+                [32.7174202, -117.162772],
+                {
+}
+            ).addTo(map_e6a88a0e05875cde4aed373bf986365b);
+        
+    
+            var icon_c9c584f7d764f8f135a1f9ad3e5e1353 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "lightgray",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_a3420c11e1cbf2c858ec3a950f730aa7.setIcon(icon_c9c584f7d764f8f135a1f9ad3e5e1353);
+        
+    
+        var popup_9d690cf97048ccac9785a5c326de7843 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a469e34cde8e9c47612f9b0955a196eb = $(`<div id="html_a469e34cde8e9c47612f9b0955a196eb" style="width: 100.0%; height: 100.0%;">San Diego: 6371.95 km to Earth's core</div>`)[0];
+                popup_9d690cf97048ccac9785a5c326de7843.setContent(html_a469e34cde8e9c47612f9b0955a196eb);
+            
+        
+
+        marker_a3420c11e1cbf2c858ec3a950f730aa7.bindPopup(popup_9d690cf97048ccac9785a5c326de7843)
+        ;
+
+        
+    
+    
+            tile_layer_a7b7979c258502f6388457c36423c39f.addTo(map_e6a88a0e05875cde4aed373bf986365b);
+        
+</script>
+</html>
